@@ -8,16 +8,13 @@ const Message = require('../models/message');
 
 mongoose.set('strictQuery', false);
 
-// MongoDB access URL (hide this later?)
-const mongoDB = 'mongodb+srv://MessageAdmin:vttq3Ci9GQU4Decz@cluster0.qz7yuhz.mongodb.net/message-board?retryWrites=true&w=majority';
-
 // local messages variable
 let messages = [];
 
 // access DB and read messages
 async function load() {
   console.log('Debug: About to connect');
-  await mongoose.connect(mongoDB);
+  await mongoose.connect(process.env.MONGO_URI);
   console.log('Debug: Should be connected?');
   const newMessages = [];
   const cursor = Message.find().sort({ added: -1 }).cursor();
@@ -33,7 +30,7 @@ async function load() {
 // function to update DB
 async function update(newMsg) {
   console.log('Debug: About to connect');
-  await mongoose.connect(mongoDB);
+  await mongoose.connect(process.env.MONGO_URI);
   console.log('Debug: Should be connected?');
 
   await Message.create(newMsg);
