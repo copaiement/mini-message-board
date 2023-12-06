@@ -3,6 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  ul
+  div.message-container
     each message in messages
-      li= message.text
+      .message-tile
+        .message-text #{message.text}
+        .message-user #{message.user} 
+        .message-added #{message.added}

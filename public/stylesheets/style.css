@@ -6,3 +6,23 @@ body {
 a {
   color: #00B7FF;
 }
+
+.message-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.message-tile {
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+}
+
+.message-text {
+  font-size: 1rem;
+}
+
+.message-user,
+.message-added {
+  font-size: .75rem;
+}
