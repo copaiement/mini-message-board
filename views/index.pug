@@ -3,7 +3,9 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
-  a(href="/new") Add a Message 
+  .links
+    a(href="/refresh") Refresh Messages
+    a(href="/new") Add a Message
   div.message-container
     each message in messages
       .message-tile
