@@ -39,30 +39,24 @@ async function update(newMsg) {
   mongoose.connection.close();
 }
 
-// initial load of messages
-load().catch((err) => console.log(err));
-
 // Index Route Main
 
 /* GET home page. */
-router.get('/', (req, res, next) => {
+router.get('/', async (req, res, next) => {
+  await load().catch((err) => console.log(err));
   res.render('index', { title: 'Mini Message Board', messages: messages });
 });
 
 /* GET new message page. */
 router.get('/new', (req, res, next) => {
-  res.render('form', { title: 'New Message' });
+  res.render('form', { title: 'New Message' , messages: messages});
 });
 
 // POST new message
 router.post('/new', async (req, res, next) => {
   const newMsg = { text: req.body.msg, user: req.body.usr, added: new Date() };
   // update DB with new message
-  update(newMsg);
-  // add newMsg to local array
-  const oldMessages = messages;
-  messages = [newMsg];
-  oldMessages.forEach((msg) => messages.push(msg));
+  await update(newMsg);
   // redirect to home
   res.redirect('/');
 });

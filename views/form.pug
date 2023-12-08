@@ -1,8 +1,7 @@
-extends layout
+extends index
 
-block content
+block new_msg
   h3= title
-  a(href="/") Back Home 
   form(class="input-form" method="POST" action="/new")
     label(class="input-label" for="msg") Message: 
     input(class="msg-field" id="msg" name="msg" type="text" placeholder="Enter your message..." required)

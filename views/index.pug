@@ -6,9 +6,10 @@ block content
   .links
     a(href="/refresh") Refresh Messages
     a(href="/new") Add a Message
+  block new_msg
   div.message-container
     each message in messages
       .message-tile
         .message-text #{message.text}
         .message-user #{message.user} 
-        .message-added #{message.added}
+        .message-added #{message.post_date_formatted}
